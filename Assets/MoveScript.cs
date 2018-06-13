@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MoveScript : MonoBehaviour {
@@ -10,7 +8,7 @@ public class MoveScript : MonoBehaviour {
 	private float speed;
 	private bool isGround = false;
 
-	private bool left, right;
+	private bool left, right, someChange;
 
 	private Rigidbody2D rb2;
 	private SpriteRenderer sr;
@@ -50,7 +48,8 @@ public class MoveScript : MonoBehaviour {
 
 	void FixedUpdate() {
 		checkInputKeyBoard ();
-		transform.Translate (speed * horizontalSpeed, 0, 0);	
+		rb2.velocity = new Vector2(speed * horizontalSpeed, rb2.velocity.y);
+		//transform.Translate (speed * horizontalSpeed, 0, 0);	
 	}
 
 	void checkInputKeyBoard() {
