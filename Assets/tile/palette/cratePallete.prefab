@@ -90,7 +90,7 @@ Grid:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723992338328302}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 0}
+  m_CellSize: {x: 1, y: 1.0384616, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -177,12 +177,34 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: -1, y: 5, z: 0}
+    second:
+      m_TileIndex: 3
+      m_TileSpriteIndex: 5
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 3, y: 5, z: 0}
+    second:
+      m_TileIndex: 2
+      m_TileSpriteIndex: 4
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 32c6f4471d673e74991668f64b2ac56f, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: fef2137cfb1ae834890aa19f8ad866de, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: e0fed1f470f7e424c83d160d7cbe5127, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 16963cb17eecfe64ca50619daf8fc420, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300002, guid: 90e9f79caf63f644f9f066df0373d256, type: 3}
@@ -192,8 +214,12 @@ Tilemap:
     m_Data: {fileID: 21300004, guid: 90e9f79caf63f644f9f066df0373d256, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 6b3d040df5480824b897e2c144940df8, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 2d826864835056b4a91ba610f40b814e, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: a4e08a4cb1dc1f2479fa10b0cd0a19cf, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 4
+  - m_RefCount: 6
     m_Data:
       e00: 1
       e01: 0
@@ -212,12 +238,12 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 4
+  - m_RefCount: 6
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -7, y: -4, z: 0}
-  m_Size: {x: 9, y: 6, z: 1}
+  m_Size: {x: 11, y: 10, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
