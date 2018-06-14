@@ -55,6 +55,7 @@ public class HeroMoveScript : Hero {
 	}
 
 	public override void jump() {
+		Debug.Log (isGround.ToString ());
 		if (isGround) {
 			rb.AddForce (new Vector2 (0, jumpImpulse), ForceMode2D.Impulse);
 			animator.Play ("idle");
@@ -92,10 +93,17 @@ public class HeroMoveScript : Hero {
 	}
 
 	void OnTriggerEnter2D(Collider2D c) {
-		isGround = true;
+		if (c.tag == "Ground")
+			isGround = true;
+	}
+
+	void OnTriggerStay2D(Collider2D c) {
+		if (c.tag == "Ground")
+			isGround = true;
 	}
 
 	void OnTriggerExit2D(Collider2D c) {
-		isGround = false;
+		if (c.tag == "Ground")
+			isGround = false;
 	}
 }
