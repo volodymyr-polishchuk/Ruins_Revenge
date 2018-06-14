@@ -8,8 +8,6 @@ public class MoveScript : MonoBehaviour {
 	private float speed;
 	private bool isGround = false;
 
-	private bool left, right, someChange;
-
 	private Rigidbody2D rb2;
 	private SpriteRenderer sr;
 
@@ -21,13 +19,11 @@ public class MoveScript : MonoBehaviour {
 	public void leftButtonDown() {
 		speed = -1;
 		sr.flipX = false;
-		left = true;
 	}
 
 	public void rightButtonDown() {
 		speed = 1;
 		sr.flipX = true;
-		right = true;
 	}
 
 	public void stop () {

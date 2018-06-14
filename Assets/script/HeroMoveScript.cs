@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WizardMoveScript : MonoBehaviour {
+public class HeroMoveScript : Hero {
 
 	public float moveSpeed;
 	public float jumpImpulse;
 	private float speed;
-	private bool isGround = true;
+	private bool isGround = false;
 
 	private Rigidbody2D rb;
 	private Animator animator;
@@ -20,49 +20,49 @@ public class WizardMoveScript : MonoBehaviour {
 		tr = GetComponent<Transform> ();
 	}
 
-	public void leftButtonDown() {
+	public override void leftButtonDown() {
 		speed = -1;
 		lastButton = 1;
 		tr.localRotation = Quaternion.Euler (0, 0, 0);
-		animator.Play ("hero_wizard_run");
+		animator.Play ("run");
 	}
 
-	public void rightButtonDown() {
+	public override void rightButtonDown() {
 		speed = 1;
 		lastButton = 2;
 		tr.localRotation = Quaternion.Euler (0, 180, 0);
-		animator.Play ("hero_wizard_run");
+		animator.Play ("run");
 	}
 
-	public void leftButtonUp() {
+	public override void leftButtonUp() {
 		if (lastButton == 1) {
 			lastButton = -1;
 			speed = 0;
-			animator.Play ("hero_wizard_idle");
+			animator.Play ("idle");
 		}
 	}
 
-	public void rightButtonUp() {
+	public override void rightButtonUp() {
 		if (lastButton == 2) {
 			lastButton = -1;
 			speed = 0;
-			animator.Play ("hero_wizard_idle");
+			animator.Play ("idle");
 		}
 	}
 
-	public void stop() {
+	public override void stop() {
 		speed = 0;
 	}
 
-	public void jump() {
+	public override void jump() {
 		if (isGround) {
 			rb.AddForce (new Vector2 (0, jumpImpulse), ForceMode2D.Impulse);
-			animator.Play ("hero_wizard_idle");
+			animator.Play ("idle");
 		}
 	}
 
-	public void attack() {
-		animator.Play ("hero_wizard_attack");
+	public override void attack() {
+		animator.Play ("attack");
 	}
 
 	void checkKeyBoard() {
@@ -76,7 +76,7 @@ public class WizardMoveScript : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		checkKeyBoard ();
+		//checkKeyBoard ();
 		rb.velocity = new Vector2 (speed * moveSpeed, rb.velocity.y);
 	}
 		
@@ -84,5 +84,18 @@ public class WizardMoveScript : MonoBehaviour {
 		if (transform.position.y < -300) {
 			SceneManager.LoadScene (0);
 		}
+	}
+
+	public override void moveCamera (Camera _camera)
+	{
+		_camera.transform.position = new Vector3 (tr.transform.position.x, tr.transform.position.y, _camera.transform.position.z);
+	}
+
+	void OnTriggerEnter2D(Collider2D c) {
+		isGround = true;
+	}
+
+	void OnTriggerExit2D(Collider2D c) {
+		isGround = false;
 	}
 }
