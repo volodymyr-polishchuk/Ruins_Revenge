@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseButtonScript : MonoBehaviour {
 
@@ -20,6 +21,10 @@ public class PauseButtonScript : MonoBehaviour {
 				text.text = "||";
 			}
 		}
+	}
+
+	public void goToMainManu() {
+		SceneManager.LoadScene ("MainMenuScene", LoadSceneMode.Single);
 	}
 
 }
