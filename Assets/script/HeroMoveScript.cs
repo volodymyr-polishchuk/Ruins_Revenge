@@ -5,8 +5,11 @@ public class HeroMoveScript : Hero {
 
 	public float moveSpeed;
 	public float jumpImpulse;
+	public float attackSpeed;
 	private float speed;
 	private bool isGround = false;
+
+	private float attackTime = 0;
 
 	private Rigidbody2D rb;
 	private Animator animator;
@@ -19,26 +22,29 @@ public class HeroMoveScript : Hero {
 		animator = GetComponent<Animator> ();
 		tr = GetComponent<Transform> ();
 	}
-
+		
 	public override void leftButtonDown() {
 		speed = -1;
 		lastButton = 1;
 		tr.localRotation = Quaternion.Euler (0, 0, 0);
-		animator.Play ("run");
+		//animator.Play ("run");
+		animator.SetFloat ("speed", Mathf.Abs(speed));
 	}
 
 	public override void rightButtonDown() {
 		speed = 1;
 		lastButton = 2;
 		tr.localRotation = Quaternion.Euler (0, 180, 0);
-		animator.Play ("run");
+		//animator.Play ("run");
+		animator.SetFloat ("speed", Mathf.Abs(speed));
 	}
 
 	public override void leftButtonUp() {
 		if (lastButton == 1) {
 			lastButton = -1;
 			speed = 0;
-			animator.Play ("idle");
+			//animator.Play ("idle");
+			animator.SetFloat ("speed", Mathf.Abs(speed));
 		}
 	}
 
@@ -46,7 +52,8 @@ public class HeroMoveScript : Hero {
 		if (lastButton == 2) {
 			lastButton = -1;
 			speed = 0;
-			animator.Play ("idle");
+			//animator.Play ("idle");
+			animator.SetFloat ("speed", Mathf.Abs(speed));
 		}
 	}
 
@@ -55,29 +62,21 @@ public class HeroMoveScript : Hero {
 	}
 
 	public override void jump() {
-		Debug.Log (isGround.ToString ());
 		if (isGround) {
 			rb.AddForce (new Vector2 (0, jumpImpulse), ForceMode2D.Impulse);
-			animator.Play ("idle");
+			//animator.Play ("idle");
 		}
 	}
 
 	public override void attack() {
-		animator.Play ("attack");
-	}
+		if (attackTime + attackSpeed < Time.time) {
+			animator.Play ("attack");
+			attackTime = Time.time + attackSpeed;
+		}
 
-	void checkKeyBoard() {
-		if (Input.GetKeyDown (KeyCode.A)) leftButtonDown ();
-		if (Input.GetKeyDown (KeyCode.D)) rightButtonDown ();
-
-		if (Input.GetKeyUp (KeyCode.A)) leftButtonUp (); 
-		if (Input.GetKeyUp (KeyCode.D)) rightButtonUp ();
-
-		if (Input.GetKeyDown (KeyCode.Space)) jump ();
 	}
 
 	void FixedUpdate() {
-		//checkKeyBoard ();
 		rb.velocity = new Vector2 (speed * moveSpeed, rb.velocity.y);
 	}
 		

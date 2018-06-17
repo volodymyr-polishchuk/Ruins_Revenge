@@ -40,4 +40,21 @@ public class PlayerController : MonoBehaviour {
 		if (hero != null)
 			hero.attack ();
 	}
+
+	void checkKeyBoard() {
+		if (Input.GetKeyDown (KeyCode.A)) leftButtonDown ();
+		if (Input.GetKeyDown (KeyCode.D)) rightButtonDown ();
+
+		if (Input.GetKeyUp (KeyCode.A)) leftButtonUp (); 
+		if (Input.GetKeyUp (KeyCode.D)) rightButtonUp ();
+
+		if (Input.GetKeyDown (KeyCode.Space)) jump ();
+
+		if (Input.GetKeyDown (KeyCode.RightControl))
+			attack ();
+	}
+
+	void Update() {
+		checkKeyBoard ();
+	}
 }
