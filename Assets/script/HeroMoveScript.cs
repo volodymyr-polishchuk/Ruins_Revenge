@@ -73,7 +73,6 @@ public class HeroMoveScript : Hero {
 			animator.Play ("attack");
 			attackTime = Time.time + attackSpeed;
 		}
-
 	}
 
 	void FixedUpdate() {
